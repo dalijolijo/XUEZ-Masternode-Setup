@@ -23,7 +23,9 @@ then
 fi
 
 if [[ $REUSE =~ "N" ]] || [[ $REUSE =~ "n" ]]; then
-        printf "\nEnter the IP-address of your XUEZ Masternode VPS and Hit [ENTER]: "
+        printf "\nFound the following IP-addresses on this Server:\n"
+	hostname -I
+	printf "\nEnter the IP-address of your XUEZ Masternode Server and Hit [ENTER]: "
         read XIP
 	printf "Enter new Password for [xuez] user and Hit [ENTER]: "
         read XPWD
