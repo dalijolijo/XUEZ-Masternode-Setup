@@ -2,10 +2,6 @@
 set -u
 
 DOCKER_REPO="dalijolijo"
-CONFIG="/home/#!/bin/bash
-set -u
-
-DOCKER_REPO="dalijolijo"
 CONFIG="/home/xuez/.xuez/xuez.conf"
 CONTAINER_NAME="xuez-masternode"
 RPC_PORT="41798"
