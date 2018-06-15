@@ -1,8 +1,6 @@
 #!/bin/bash
 set -u
 
-BOOTSTRAP='bootstrap.tar.gz'
-
 #
 # Set passwd of xuez user
 #
@@ -41,13 +39,13 @@ fi
 # 1) Go to blocks folder (e.g. /home/xuez/.xuez/blocks
 # 2) Execute after sync: #cat blk000*.dat > bootstrap.dat
 #
-#printf "** Downloading bootstrap file ***\n"
-#cd /home/xuez/.xuez/
-#if [ ! -d /home/xuez/.xuez/blocks ] && [ "$(curl -Is https://xuezcoin.com/${BOOTSTRAP} | head -n 1 | tr -d '\r\n')" = "HTTP/1.1 200 OK" ] ; then \
-#        sudo -u xuez wget https://xuezcoin.com/${BOOTSTRAP}; \
-#        sudo -u xuez tar -xvzf ${BOOTSTRAP}; \
-#        sudo -u xuez rm ${BOOTSTRAP}; \
-#fi
+printf "** Downloading bootstrap file ***\n"
+cd /home/xuez/.xuez/
+if [ ! -d /home/xuez/.xuez/blocks ] && [ "$(curl -Is ${WEB}${BOOTSTRAP} | head -n 1 | tr -d '\r\n')" = "HTTP/1.1 200 OK" ] ; then \
+        sudo -u xuez wget ${WEB}${BOOTSTRAP}; \
+        sudo -u xuez tar -xvzf ${BOOTSTRAP}; \
+        sudo -u xuez rm ${BOOTSTRAP}; \
+fi
 
 #
 # Starting XUEZ Service
