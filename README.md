@@ -29,9 +29,9 @@ sudo curl -sSL https://get.docker.com | sh
 Login as root, then do:
 
 ```
-wget https://raw.githubusercontent.com/dalijolijo/XUEZ-Masternode-Setup/master/xuez-docker.sh
-chmod +x xuez-docker.sh
-./xuez-docker.sh
+wget https://raw.githubusercontent.com/dalijolijo/XUEZ-Masternode-Setup/master/xuez-masternode-docker.sh
+chmod +x xuez-masternode-docker.sh
+./xuez-masternode-docker.sh
 ```
 
 ### For more details to docker related stuff have a look at:
