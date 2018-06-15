@@ -41,8 +41,8 @@ fi
 #
 printf "** Downloading bootstrap file ***\n"
 cd /home/xuez/.xuez/
-if [ ! -d /home/xuez/.xuez/blocks ] && [ "$(curl -Is ${WEB}${BOOTSTRAP} | head -n 1 | tr -d '\r\n')" = "HTTP/1.1 200 OK" ] ; then \
-        sudo -u xuez wget ${WEB}${BOOTSTRAP}; \
+if [ ! -d /home/xuez/.xuez/blocks ] && [ "$(curl -Is https://${WEB}/${BOOTSTRAP} | head -n 1 | tr -d '\r\n')" = "HTTP/1.1 200 OK" ] ; then \
+        sudo -u xuez wget https://${WEB}/${BOOTSTRAP}; \
         sudo -u xuez tar -xvzf ${BOOTSTRAP}; \
         sudo -u xuez rm ${BOOTSTRAP}; \
 fi
