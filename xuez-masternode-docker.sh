@@ -5,7 +5,8 @@ DOCKER_REPO="dalijolijo"
 CONFIG="/home/xuez/.xuez/xuez.conf"
 CONTAINER_NAME="xuez-masternode"
 RPC_PORT="41798"
-BOOTSTRAP='https://xuezcoin.com/bootstrap.tar.gz'
+WEB="xuezcoin.com" # without "https://" and without the last "/" (only HTTPS accepted)
+BOOTSTRAP="bootstrap.tar.gz"
 
 #
 # Check if xuez.conf already exist. Set xuez user pwd
