@@ -28,6 +28,14 @@ sed -i "s/^\(externalip=\).*/externalip=${XIP}/" /home/xuez/.xuez/xuez.conf
 sed -i "s/^\(masternodeprivkey=\).*/masternodeprivkey=${MN_KEY}/" /home/xuez/.xuez/xuez.conf
 
 #
+# Check if RPC Server config to be load 
+#
+if [[ $MN_KEY =~ "NOT_NEEDED" ]]; then
+        sed -i "s/^\(masternode=\).*/masternode=0/" /home/xuez/.xuez/xuez.conf
+        sed -i "s/^\(listen=\).*/listen=0/" /home/xuez/.xuez/xuez.conf
+fi
+
+#
 # Downloading bootstrap file (not yet available)
 # Generate it with: 
 # 1) Go to blocks folder (e.g. /home/xuez/.xuez/blocks
