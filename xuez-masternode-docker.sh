@@ -5,6 +5,7 @@ DOCKER_REPO="dalijolijo"
 CONFIG="/home/xuez/.xuez/xuez.conf"
 CONTAINER_NAME="xuez-masternode"
 RPC_PORT="41798"
+BOOTSTRAP='https://xuezcoin.com/bootstrap.tar.gz'
 
 #
 # Check if xuez.conf already exist. Set xuez user pwd
@@ -253,7 +254,7 @@ if [ $? -eq 0 ];then
 fi
 docker rm ${CONTAINER_NAME} >/dev/null
 docker pull ${DOCKER_REPO}/xuez-masternode
-docker run -p ${RPC_PORT}:${RPC_PORT} --name ${CONTAINER_NAME} -e XIP="${XIP}" -e XPWD="${XPWD}" -e MN_KEY="${MN_KEY}" -v /home/xuez:/home/xuez:rw -d ${DOCKER_REPO}/xuez-masternode
+docker run -p ${RPC_PORT}:${RPC_PORT} --name ${CONTAINER_NAME} -e XIP="${XIP}" -e XPWD="${XPWD}" -e MN_KEY="${MN_KEY}" -e BOOTSTRAP="${BOOTSTRAP}" -v /home/xuez:/home/xuez:rw -d ${DOCKER_REPO}/xuez-masternode
 
 #
 # Show result and give user instructions
