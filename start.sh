@@ -46,7 +46,7 @@ if [ ! -d /home/xuez/.xuez/blocks ] && [ "$(curl -Is https://${WEB}/${BOOTSTRAP}
                 sudo -u xuez wget https://${WEB}/${BOOTSTRAP}?raw=true -O ${BOOTSTRAP}; \
         else \
                 sudo -u xuez wget https://${WEB}/${BOOTSTRAP}; \
-        fi \
+        fi
         sudo -u xuez tar -xvzf ${BOOTSTRAP};
         sudo -u xuez rm ${BOOTSTRAP};
 fi
