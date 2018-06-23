@@ -41,7 +41,7 @@ if [[ $REUSE =~ "N" ]] || [[ $REUSE =~ "n" ]]; then
         read MN_KEY
 else
         source $CONFIG
-	XIP=$(echo $externalip)
+	X_IP=$(echo $externalip)
         MN_KEY=$(echo $masternodeprivkey)
 fi
 
