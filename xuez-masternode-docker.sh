@@ -14,7 +14,7 @@ BOOTSTRAP="bootstrap.tar.gz"
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 NO_COL='\033[0m'
-X_COL='\033[0;36m'
+X_COL='\033[0;34m' 
 
 #
 # Check if xuez.conf already exist. Set xuez ip and masternodekey.
