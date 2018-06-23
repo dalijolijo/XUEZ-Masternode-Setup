@@ -2,11 +2,6 @@
 set -u
 
 #
-# Set passwd of xuez user
-#
-echo xuez:${XPWD} | chpasswd
-
-#
 # Downloading xuez.conf
 #
 cd /tmp/
