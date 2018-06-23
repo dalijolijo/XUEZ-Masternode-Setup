@@ -9,11 +9,19 @@ WEB="github.com/dalijolijo/XUEZ-Masternode-Setup/blob/master" # without "https:/
 BOOTSTRAP="bootstrap.tar.gz"
 
 #
-# Check if xuez.conf already exist. Set xuez user pwd
+# Color definitions
+#
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NO_COL='\033[0m'
+X_COL='\033[0;36m'
+
+#
+# Check if xuez.conf already exist. Set xuez ip and masternodekey.
 #
 clear
 REUSE="No"
-printf "\nDOCKER SETUP FOR XUEZ MASTERNODE\n"
+printf "\nDOCKER SETUP FOR ${X_COL}XUEZ${NO_COL} MASTERNODE\n"
 printf "\nSetup Config file"
 printf "\n-----------------"
 if [ -f "$CONFIG" ]
@@ -27,16 +35,13 @@ fi
 if [[ $REUSE =~ "N" ]] || [[ $REUSE =~ "n" ]]; then
         printf "\nFound the following IP-addresses on this Server:\n"
 	hostname -I
-	printf "\nEnter the IP-address of your XUEZ Masternode Server and Hit [ENTER]: "
-        read XIP
-	printf "Enter new Password for [xuez] user and Hit [ENTER]: "
-        read XPWD
-        printf "Enter your XUEZ Masternode genkey respond and Hit [ENTER]: "
+	printf "\nEnter the IP-address of your ${X_COL}XUEZ${NO_COL} Masternode Server and Hit [ENTER]: "
+        read X_IP
+        printf "Enter your ${X_COL}XUEZ${NO_COL} Masternode genkey respond and Hit [ENTER]: "
         read MN_KEY
 else
         source $CONFIG
 	XIP=$(echo $externalip)
-        XPWD=$(echo $rpcpassword)
         MN_KEY=$(echo $masternodeprivkey)
 fi
 
@@ -112,7 +117,7 @@ if [[ $OS =~ "Fedora" ]] || [[ $OS =~ "fedora" ]] || [[ $OS =~ "CentOS" ]] || [[
         which ufw >/dev/null
         if [ $? -ne 0 ]; then
             if [[ $OS =~ "CentOS" ]] || [[ $OS =~ "centos" ]]; then
-                printf "Missing firewall (firewalld) on your system.\n"
+                printf "${RED}Missing firewall (firewalld) on your system.${NO_COL}\n"
                 printf "Automated firewall setup will open the following ports: 22 and ${RPC_PORT}\n"
                 printf "\nDo you want to install firewall (firewalld) and execute automated firewall setup?\n"
                 printf "Enter [Y]es or [N]o and Hit [ENTER]: "
@@ -134,7 +139,7 @@ if [[ $OS =~ "Fedora" ]] || [[ $OS =~ "fedora" ]] || [[ $OS =~ "CentOS" ]] || [[
                     firewall-cmd --reload
                 fi
             else
-                printf "Missing firewall (ufw) on your system.\n"
+                printf "${RED}Missing firewall (ufw) on your system.${NO_COL}\n"
                 printf "Automated firewall setup will open the following ports: 22 and ${RPC_PORT}\n"
                 printf "\nDo you want to install firewall (ufw) and execute automated firewall setup?\n"
                 printf "Enter [Y]es or [N]o and Hit [ENTER]: "
@@ -185,7 +190,7 @@ elif [[ $OS =~ "Ubuntu" ]] || [[ $OS =~ "ubuntu" ]] || [[ $OS =~ "Debian" ]] || 
     # Check if firewall ufw is installed
     which ufw >/dev/null
     if [ $? -ne 0 ];then
-        printf "Missing firewall (ufw) on your system.\n"
+        printf "${RED}Missing firewall (ufw) on your system.${NO_COL}\n"
         printf "Automated firewall setup will open the following ports: 22 and ${RPC_PORT}\n"
         printf "\nDo you want to install firewall (ufw) and execute automated firewall setup?\n"
         printf "Enter [Y]es or [N]o and Hit [ENTER]: "
@@ -239,7 +244,7 @@ printf "\nStart Docker container"
 printf "\n----------------------\n"
 sudo docker ps | grep ${CONTAINER_NAME} >/dev/null
 if [ $? -eq 0 ];then
-    printf "Conflict! The container name \'${CONTAINER_NAME}\' is already in use.\n"
+    printf "${RED}Conflict! The container name \'${CONTAINER_NAME}\' is already in use.${NO_COL}\n"
     printf "\nDo you want to stop the running container to start the new one?\n"
     printf "Enter [Y]es or [N]o and Hit [ENTER]: "
     read STOP
@@ -249,13 +254,13 @@ if [ $? -eq 0 ];then
     else
 	printf "\nDocker Setup Result"
         printf "\n----------------------\n"
-        printf "Canceled the Docker Setup without starting XUEZ Masternode Docker Container.\n\n"
+        printf "${RED}Canceled the Docker Setup without starting ${X_COL}XUEZ${RED} Masternode Docker Container.${NO_COL}\n\n"
 	exit 1
     fi
 fi
 docker rm ${CONTAINER_NAME} >/dev/null
 docker pull ${DOCKER_REPO}/xuez-masternode
-docker run -p ${RPC_PORT}:${RPC_PORT} --name ${CONTAINER_NAME} -e XIP="${XIP}" -e XPWD="${XPWD}" -e MN_KEY="${MN_KEY}" -e WEB="${WEB}" -e BOOTSTRAP="${BOOTSTRAP}" -v /home/xuez:/home/xuez:rw -d ${DOCKER_REPO}/xuez-masternode
+docker run -p ${RPC_PORT}:${RPC_PORT} --name ${CONTAINER_NAME} -e X_IP="${X_IP}" -e MN_KEY="${MN_KEY}" -e WEB="${WEB}" -e BOOTSTRAP="${BOOTSTRAP}" -v /home/xuez:/home/xuez:rw -d ${DOCKER_REPO}/xuez-masternode
 
 #
 # Show result and give user instructions
@@ -265,11 +270,11 @@ printf "\nDocker Setup Result"
 printf "\n----------------------\n"
 sudo docker ps | grep ${CONTAINER_NAME} >/dev/null
 if [ $? -ne 0 ];then
-    printf "Sorry! Something went wrong. :(\n"
+    printf "${RED}Sorry! Something went wrong. :(${NO_COL}\n"
 else
-    printf "GREAT! Your XUEZ Masternode Docker Container is running now! :)\n"
+    printf "${GREEN}GREAT! Your ${X_COL}XUEZ${GREEN} Masternode Docker Container is running now! :)${NO_COL}\n"
     printf "\nShow your running docker container \'${CONTAINER_NAME}\' with 'docker ps'\n"
     sudo docker ps | grep ${CONTAINER_NAME}
     printf "\nJump inside the docker container with 'docker exec -it ${CONTAINER_NAME} bash'\n"
-    printf "HAVE FUN!\n\n"
+    printf "${GREEN}HAVE FUN!${NO_COL}\n\n"
 fi
