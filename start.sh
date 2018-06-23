@@ -17,7 +17,7 @@ chown -R xuez:xuez /home/xuez/
 sudo -u xuez cp /tmp/xuez.conf /home/xuez/.xuez/
 sed -i "s|^\(rpcuser=\).*|rpcuser=xuezmasternode$(openssl rand -base64 32)|g" /home/xuez/.xuez/xuez.conf
 sed -i "s|^\(rpcpassword=\).*|rpcpassword=$(openssl rand -base64 32)|g" /home/xuez/.xuez/xuez.conf
-sed -i "s|^\(externalip=\).*|externalip=${XIP}|g" /home/xuez/.xuez/xuez.conf 
+sed -i "s|^\(externalip=\).*|externalip=${X_IP}|g" /home/xuez/.xuez/xuez.conf 
 sed -i "s|^\(masternodeprivkey=\).*|masternodeprivkey=${MN_KEY}|g" /home/xuez/.xuez/xuez.conf
 
 #
