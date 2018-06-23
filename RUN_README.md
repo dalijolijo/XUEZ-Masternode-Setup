@@ -19,7 +19,7 @@ docker pull <repository>/xuez-masternode
 
 ## Run docker container
 ```
-docker run -p 41798:41798 --name xuez-masternode -e XPWD='NEW_XUEZV_PWD' -e MN_KEY='YOUR_MN_KEY' -v /home/xuez:/home/xuez:rw -d <repository>/xuez-masternode
+docker run -p 41798:41798 --name xuez-masternode -e X_IP='X_IP' -e MN_KEY='YOUR_MN_KEY' -v /home/xuez:/home/xuez:rw -d <repository>/xuez-masternode
 docker ps
 ```
 
@@ -43,7 +43,7 @@ docker exec -it xuez-masternode bash
 
 ## Debbuging within a container during run (skip start.sh execution)
 ```
-docker run -p 41798:41798 --name xuez-masternode -e XPWD='NEW_XUEZ_PWD' -e MN_KEY='YOUR_MN_KEY' -v /home/xuez:/home/xuez:rw --entrypoint bash <repository>/xuez-masternode
+docker run -p 41798:41798 --name xuez-masternode -e X_IP='X_IP' -e MN_KEY='YOUR_MN_KEY' -v /home/xuez:/home/xuez:rw --entrypoint bash <repository>/xuez-masternode
 ```
 
 ## Stop docker container
