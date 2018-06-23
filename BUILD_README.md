@@ -26,7 +26,7 @@ swapon /swapfile
 
 ## Build docker image
 ```
-docker build [--build-arg XPWD='<gravium user pwd>'] -t xuez-masternode .
+docker build -t xuez-masternode .
 ```
 
 ## Push docker image to hub.docker
